@@ -10,6 +10,10 @@ import Icon from "@/components/Icon.astro";
 import Footer from "@/components/Footer.astro";
 import { profile } from "@/data/profile";
 
+const hasCorrespondingMark = profile.publications.some((p) =>
+  p.authors.includes("†"),
+);
+
 const hasHonors =
   profile.awards.length > 0 || profile.certifications.length > 0;
 
@@ -81,6 +85,9 @@ const nav = [
               <PublicationEntry {...publication} />
             ))}
           </EntryList>
+          {hasCorrespondingMark && (
+            <p class="footnote">† Corresponding author</p>
+          )}
         </Section>
       )}
 
@@ -172,6 +179,12 @@ const nav = [
 
   .about :global(a:hover) {
     color: var(--color-accent);
+  }
+
+  .footnote {
+    margin-top: 2.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-muted);
   }
 
   .skills {

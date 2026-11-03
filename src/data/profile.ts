@@ -30,11 +30,16 @@ export interface Education {
 
 export interface Publication {
   title: string;
-  /** Comma-separated. Your own name (profile.name) is highlighted automatically. */
+  /**
+   * Comma-separated. Your own name (profile.name) is highlighted automatically.
+   * Add † after a name to mark the corresponding author.
+   */
   authors: string;
   /** e.g. "ACL 2027" or "Under review" */
   venue: string;
   year: string;
+  /** Optional highlight shown as a badge, e.g. "Best Student Paper" */
+  award?: string;
   links?: { label: string; href: string }[];
 }
 
@@ -141,6 +146,14 @@ export const profile: Profile = {
       venue: "NAACL 2027 (Under Review)",
       year: "2027",
     },
+    {
+      title:
+        "Think Where It Matters: Role-Specific Thinking Mode Allocation in Multi-Agent LLM Debate",
+      authors: "Jiheon Kim, Moohong Min†",
+      venue: "EBISION 2026 (IFIP WG 8.4 Symposium)",
+      year: "2026",
+      award: "Best Student Paper",
+    },
   ],
 
   experience: [
@@ -212,7 +225,7 @@ export const profile: Profile = {
     },
     {
       name: "2022 K-Software Empowerment BootCamp",
-      detail: "Excellence Award · Healthcare AI",
+      detail: "Excellence Award",
     },
     {
       name: "Personal Finance and Wealth Management Program",
@@ -222,10 +235,13 @@ export const profile: Profile = {
 
   certifications: [
     {
+      name: "Data Science Summer Program 2025, Certificate of Excellence",
+      detail: "SNU GSDS",
+    },
+    {
       name: "Building Transformer-Based NLP Applications",
       detail: "NVIDIA DLI",
     },
-    { name: "K-Software Empowerment BootCamp" },
     { name: "SRI Business Workshop" },
     { name: "Local Community-Linked 3D Printing Startup Camp" },
     { name: "Student Business Management Camp" },
