@@ -226,8 +226,18 @@ const nav = [
       padding-inline: 6rem;
     }
 
-    main {
-      padding-top: 6rem;
+    /*
+     * About fills the first screen with its content vertically centered,
+     * both on first load and when "About" is clicked in the nav.
+     * Other sections keep scrolling to the top of the viewport.
+     */
+    main :global(#about) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin-bottom: 0;
     }
   }
 </style>

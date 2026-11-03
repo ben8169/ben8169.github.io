@@ -107,7 +107,7 @@ export const profile: Profile = {
       icon: "linkedin",
     },
     { label: "Blog", href: "https://ben8169.tistory.com/", icon: "blog" },
-    { label: "Email", href: "mailto:ben8169@outlook.kr", icon: "mail" },
+    { label: "Email", href: "mailto:ben8169@kaist.ac.kr", icon: "mail" },
   ],
 
   /** Not shown right now — the Education section is commented out in src/pages/index.astro. */
