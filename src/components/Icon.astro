@@ -1,0 +1,45 @@
+---
+import ArrowUpRight from "@tabler/icons/outline/arrow-up-right.svg";
+import ArrowRight from "@tabler/icons/outline/arrow-right.svg";
+import Github from "@tabler/icons/outline/brand-github.svg";
+import Instagram from "@tabler/icons/outline/brand-instagram.svg";
+import Linkedin from "@tabler/icons/outline/brand-linkedin.svg";
+import X from "@tabler/icons/outline/brand-x.svg";
+import Mail from "@tabler/icons/outline/mail.svg";
+import MapPin from "@tabler/icons/outline/map-pin.svg";
+import Rss from "@tabler/icons/outline/rss.svg";
+import World from "@tabler/icons/outline/world.svg";
+
+// 아이콘 추가: https://tabler.io/icons 에서 이름을 찾아 import 후 아래 목록에 등록
+const icons = {
+  "arrow-up-right": ArrowUpRight,
+  "arrow-right": ArrowRight,
+  github: Github,
+  instagram: Instagram,
+  linkedin: Linkedin,
+  x: X,
+  mail: Mail,
+  "map-pin": MapPin,
+  rss: Rss,
+  website: World,
+};
+
+export type IconName = keyof typeof icons;
+
+interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 20, class: className } = Astro.props;
+const Svg = icons[name];
+---
+
+<Svg
+  width={size}
+  height={size}
+  stroke-width={1.75}
+  aria-hidden="true"
+  class={className}
+/>

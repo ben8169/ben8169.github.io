@@ -1,0 +1,22 @@
+---
+/**
+ * 경력·프로젝트 카드 목록. 마우스를 올린 카드만 강조되고 나머지는 흐려집니다.
+ */
+---
+
+<ol class="entries">
+  <slot />
+</ol>
+
+<style>
+  .entries {
+    display: grid;
+    gap: 3rem;
+  }
+
+  @media (min-width: 1024px) and (hover: hover) {
+    .entries:hover > :global(li:not(:hover)) {
+      opacity: 0.5;
+    }
+  }
+</style>

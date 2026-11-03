@@ -1,5 +1,8 @@
 ---
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+import "@fontsource-variable/geist-mono";
 import "@/styles/global.css";
+import Spotlight from "@/components/Spotlight.astro";
 import { site } from "@/data/profile";
 
 interface Props {
@@ -20,6 +23,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="theme-color"
+      content="#0a0b0f"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#fbfaf8"
+      media="(prefers-color-scheme: light)"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -29,6 +42,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
+    <a class="skip-link" href="#content">
+      본문으로 건너뛰기
+    </a>
+    <Spotlight />
     <slot />
   </body>
 </html>
