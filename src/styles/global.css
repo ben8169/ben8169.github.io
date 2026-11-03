@@ -78,6 +78,11 @@ p {
   margin: 0;
 }
 
+/* Avoid a single word stranded on the last line of a paragraph. */
+p {
+  text-wrap: pretty;
+}
+
 h1,
 h2,
 h3 {

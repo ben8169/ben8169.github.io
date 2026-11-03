@@ -4,6 +4,9 @@
  * - Empty strings ("") hide optional fields.
  */
 
+import type { ImageMetadata } from "astro";
+import profilePhoto from "@/assets/profile.jpg";
+
 export type SocialIcon =
   | "github"
   | "linkedin"
@@ -73,6 +76,8 @@ export interface Honor {
 
 export interface Profile {
   name: string;
+  /** Square portrait shown above About. Replace src/assets/profile.jpg to change it. */
+  photo?: ImageMetadata;
   role: string;
   tagline: string;
   status?: string;
@@ -91,9 +96,10 @@ export interface Profile {
 
 export const profile: Profile = {
   name: "JiHeon Kim",
+  photo: profilePhoto,
   role: "AI Developer & Researcher",
   tagline:
-    "Specializing in AI agents and NLP. Also interested in security, business and economics.",
+    "Building reliable, efficient multi-agent LLM systems, from tool-augmented agents to LLM debate. Also interested in business and economics.",
   status: "M.S. student at KAIST AI",
   location: "Seoul, South Korea",
 
