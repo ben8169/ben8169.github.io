@@ -30,7 +30,10 @@ export interface Education {
 
 export interface Publication {
   title: string;
-  /** Comma-separated. Your own name (profile.name) is highlighted automatically. */
+  /**
+   * Comma-separated. Your own name (profile.name) is highlighted automatically.
+   * Add † after a name to mark the corresponding author.
+   */
   authors: string;
   /** e.g. "ACL 2027" or "Under review" */
   venue: string;
@@ -146,7 +149,7 @@ export const profile: Profile = {
     {
       title:
         "Think Where It Matters: Role-Specific Thinking Mode Allocation in Multi-Agent LLM Debate",
-      authors: "Jiheon Kim",
+      authors: "Jiheon Kim, Moohong Min†",
       venue: "EBISION 2026 (IFIP WG 8.4 Symposium)",
       year: "2026",
       award: "Best Student Paper",
@@ -222,7 +225,7 @@ export const profile: Profile = {
     },
     {
       name: "2022 K-Software Empowerment BootCamp",
-      detail: "Excellence Award · Healthcare AI",
+      detail: "Excellence Award",
     },
     {
       name: "Personal Finance and Wealth Management Program",
