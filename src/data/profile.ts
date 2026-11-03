@@ -5,12 +5,27 @@
  */
 
 export type SocialIcon =
-  "github" | "linkedin" | "x" | "instagram" | "mail" | "rss" | "website";
+  | "github"
+  | "linkedin"
+  | "x"
+  | "instagram"
+  | "mail"
+  | "rss"
+  | "blog"
+  | "website";
 
 export interface Social {
   label: string;
   href: string;
   icon: SocialIcon;
+}
+
+export interface Education {
+  /** e.g. "2022 — 2026" */
+  period: string;
+  school: string;
+  degree: string;
+  href?: string;
 }
 
 export interface Experience {
@@ -32,6 +47,13 @@ export interface Project {
   tags?: string[];
 }
 
+export interface Honor {
+  /** Main line, e.g. the competition or certificate name */
+  name: string;
+  /** Short right-aligned detail, e.g. the prize or issuer */
+  detail?: string;
+}
+
 export interface Profile {
   name: string;
   role: string;
@@ -39,25 +61,32 @@ export interface Profile {
   status?: string;
   location?: string;
   about: string[];
+  skills: string[];
   socials: Social[];
+  education: Education[];
   experience: Experience[];
   projects: Project[];
+  awards: Honor[];
+  certifications: Honor[];
   resume?: string;
 }
 
 export const profile: Profile = {
-  name: "Jiheon Kim",
-  role: "AI Engineer",
-  tagline: "I build AI agents that turn natural language into real work.",
-  status: "Open to opportunities",
-  location: "South Korea",
+  name: "JiHeon Kim",
+  role: "AI Developer & Researcher",
+  tagline:
+    "Specializing in AI agents and NLP. Also interested in security, business and economics.",
+  status: "M.S. student at KAIST AI",
+  location: "Seoul, South Korea",
 
   /** One string per paragraph. Simple HTML such as <a> and <strong> is allowed. */
   about: [
-    "I'm a developer focused on <strong>AI agents</strong> and applied deep learning. I like taking tedious, manual workflows and handing them to models that can plan and act on their own.",
-    "Most recently I've been building <a href='https://github.com/ben8169/EditPPT'>EditPPT</a>, an agentic system that edits PowerPoint decks through LLM tool calling.",
-    "Along the way I've trained models with PyTorch, reproduced security research, analyzed financial data, and took part in SK Telecom's FLY AI program.",
+    "I'm an AI developer and researcher specializing in <strong>agents</strong> and <strong>natural language processing</strong>. I'm currently pursuing an M.S. in Artificial Intelligence at <a href='https://www.kaist.ac.kr/en/'>KAIST</a>.",
+    "Before KAIST, I double-majored in English Literature and Artificial Intelligence at Sungkyunkwan University, and spent a semester at Chuo University in Japan.",
+    "Lately I've been building <a href='https://github.com/ben8169/EditPPT'>EditPPT</a>, an agentic system that edits PowerPoint decks through LLM tool calling. Beyond AI, I enjoy security — I received an Excellence Award at SKKU's bug bounty — as well as business and economics.",
   ],
+
+  skills: ["AI Agents", "NLP", "Deep Learning", "Cybersecurity", "Business"],
 
   socials: [
     { label: "GitHub", href: "https://github.com/ben8169", icon: "github" },
@@ -66,17 +95,48 @@ export const profile: Profile = {
       href: "https://www.linkedin.com/in/jiheon-kim-13856825b/",
       icon: "linkedin",
     },
-    // { label: "Email", href: "mailto:you@example.com", icon: "mail" },
+    { label: "Blog", href: "https://ben8169.tistory.com/", icon: "blog" },
+    { label: "Email", href: "mailto:ben8169@outlook.kr", icon: "mail" },
+  ],
+
+  education: [
+    {
+      period: "2026 — Present",
+      school: "KAIST",
+      degree: "M.S. in Artificial Intelligence",
+      href: "https://www.kaist.ac.kr/en/",
+    },
+    {
+      period: "2024 — 2025",
+      school: "Chuo University",
+      degree: "Exchange Student, Faculty of Science and Engineering",
+      href: "https://www.chuo-u.ac.jp/english/",
+    },
+    {
+      period: "2022 — 2026",
+      school: "Sungkyunkwan University",
+      degree:
+        "B.A. in English Literature and Artificial Intelligence (Double Major)",
+      href: "https://www.skku.edu/eng/",
+    },
   ],
 
   experience: [
     {
       period: "2025",
-      title: "AI Trainee",
-      company: "SKT FLY AI · 7th Cohort",
+      title: "FLY AI Challenger",
+      company: "SK Telecom · 7th Cohort",
       description:
         "Took part in SK Telecom's FLY AI program, building AI projects as a member of Team 1.",
       tags: ["AI", "Team Project"],
+    },
+    {
+      period: "2022",
+      title: "Trainee",
+      company: "K-Software Empowerment BootCamp",
+      description:
+        "Completed the bootcamp and received the Excellence Award in the Healthcare AI category.",
+      tags: ["Healthcare AI"],
     },
   ],
 
@@ -102,6 +162,34 @@ export const profile: Profile = {
       href: "https://github.com/ben8169/-MacOS-Windows-",
       tags: ["Unicode", "Utility"],
     },
+  ],
+
+  awards: [
+    { name: "TAVE 13th Conference", detail: "Grand Prize (1st)" },
+    { name: "SKKU 7th Bug Bounty", detail: "Excellence Award" },
+    {
+      name: "SKKU Undergraduate Startup Competition",
+      detail: "Excellence Award",
+    },
+    {
+      name: "2022 K-Software Empowerment BootCamp",
+      detail: "Excellence Award · Healthcare AI",
+    },
+    {
+      name: "Personal Finance and Wealth Management Program",
+      detail: "Award of Excellence",
+    },
+  ],
+
+  certifications: [
+    {
+      name: "Building Transformer-Based NLP Applications",
+      detail: "NVIDIA DLI",
+    },
+    { name: "K-Software Empowerment BootCamp" },
+    { name: "SRI Business Workshop" },
+    { name: "Local Community-Linked 3D Printing Startup Camp" },
+    { name: "Student Business Management Camp" },
   ],
 
   /** Link to a résumé PDF, etc. Hidden when empty. */

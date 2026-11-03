@@ -4,19 +4,25 @@ import Sidebar from "@/components/Sidebar.astro";
 import Section from "@/components/Section.astro";
 import EntryList from "@/components/EntryList.astro";
 import Entry from "@/components/Entry.astro";
+import HonorList from "@/components/HonorList.astro";
 import Icon from "@/components/Icon.astro";
 import Footer from "@/components/Footer.astro";
 import { profile } from "@/data/profile";
 
+const hasHonors =
+  profile.awards.length > 0 || profile.certifications.length > 0;
+
 // Only sections that have content appear in the nav and the page.
 const nav = [
   { id: "about", label: "About", show: profile.about.length > 0 },
+  { id: "education", label: "Education", show: profile.education.length > 0 },
   {
     id: "experience",
     label: "Experience",
     show: profile.experience.length > 0,
   },
   { id: "projects", label: "Projects", show: profile.projects.length > 0 },
+  { id: "honors", label: "Honors", show: hasHonors },
 ].filter((item) => item.show);
 ---
 
@@ -32,6 +38,28 @@ const nav = [
               <p set:html={paragraph} />
             ))}
           </div>
+          {profile.skills.length > 0 && (
+            <ul class="skills" aria-label="Skills">
+              {profile.skills.map((skill) => (
+                <li>{skill}</li>
+              ))}
+            </ul>
+          )}
+        </Section>
+      )}
+
+      {profile.education.length > 0 && (
+        <Section id="education" title="Education">
+          <EntryList>
+            {profile.education.map((item) => (
+              <Entry
+                title={item.school}
+                href={item.href}
+                description={item.degree}
+                period={item.period}
+              />
+            ))}
+          </EntryList>
         </Section>
       )}
 
@@ -79,6 +107,21 @@ const nav = [
         </Section>
       )}
 
+      {hasHonors && (
+        <Section id="honors" title="Honors">
+          {profile.awards.length > 0 && (
+            <HonorList heading="Awards" icon="trophy" items={profile.awards} />
+          )}
+          {profile.certifications.length > 0 && (
+            <HonorList
+              heading="Certifications"
+              icon="certificate"
+              items={profile.certifications}
+            />
+          )}
+        </Section>
+      )}
+
       <Footer />
     </main>
   </div>
@@ -107,6 +150,23 @@ const nav = [
 
   .about :global(a:hover) {
     color: var(--color-accent);
+  }
+
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .skills li {
+    padding: 0.3rem 0.85rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-heading);
+    line-height: 1.6;
   }
 
   .more {

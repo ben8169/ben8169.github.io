@@ -255,6 +255,21 @@ const { nav } = Astro.props;
     }
   }
 
+  /* Short laptop screens: tighten spacing so the sidebar fits the viewport. */
+  @media (min-width: 1024px) and (max-height: 800px) {
+    .sidebar {
+      padding-block: 3.5rem;
+    }
+
+    .nav {
+      margin-top: 2.5rem;
+    }
+
+    .nav a {
+      padding-block: 0.4rem;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .pulse::after {
       animation: none;
