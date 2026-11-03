@@ -1,0 +1,53 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/Hero.astro";
+import Section from "@/components/Section.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import Footer from "@/components/Footer.astro";
+import { profile } from "@/data/profile";
+---
+
+<BaseLayout>
+  <Hero />
+
+  <main>
+    <Section id="about" title="About">
+      <div class="prose">
+        {profile.about.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </Section>
+
+    <Section id="projects" title="Projects">
+      <div class="grid">
+        {profile.projects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </Section>
+
+    {profile.email && (
+      <Section id="contact" title="Contact">
+        <p>
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        </p>
+      </Section>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .prose {
+    display: grid;
+    gap: 1rem;
+    font-size: 1.0625rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+</style>
