@@ -127,9 +127,7 @@ const isExternal = href?.startsWith("http");
   }
 
   .title-link {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.25rem;
+    display: inline;
     transition: color 0.2s;
   }
 
@@ -146,9 +144,11 @@ const isExternal = href?.startsWith("http");
     color: var(--color-muted);
   }
 
+  /* Keep the arrow inline so it follows the last word, even when the title wraps. */
   .title-link :global(.arrow) {
-    flex-shrink: 0;
-    align-self: center;
+    display: inline-block;
+    margin-left: 0.25rem;
+    vertical-align: -0.125em;
     transition: transform 0.2s var(--ease);
   }
 
@@ -191,8 +191,12 @@ const isExternal = href?.startsWith("http");
 
   @media (min-width: 640px) {
     .entry {
-      grid-template-columns: 9rem 1fr;
+      grid-template-columns: 10rem 1fr;
       gap: 1.5rem;
+    }
+
+    .period {
+      white-space: nowrap;
     }
 
     .entry.no-aside {
