@@ -49,6 +49,8 @@ export interface Experience {
 }
 
 export interface Project {
+  /** e.g. "2025" or "Apr — Jun 2025" */
+  period?: string;
   title: string;
   description: string;
   href?: string;
@@ -143,44 +145,61 @@ export const profile: Profile = {
 
   experience: [
     {
-      period: "2025",
-      title: "FLY AI Challenger",
-      company: "SK Telecom · 7th Cohort",
+      period: "Dec 2025 — Aug 2026",
+      title: "AI Research Intern",
+      company: "KAIST AI",
       description:
-        "Took part in SK Telecom's FLY AI program, building AI projects as a member of Team 1.",
-      tags: ["AI", "Team Project"],
+        "Researched EditPPT in the DAVIAN Lab under Prof. Jaegul Choo: a tool-augmented multi-agent framework that edits presentations through COM automation, cutting token cost and latency while improving accuracy. Collaborating with the Microsoft PowerPoint team to extend the work.",
+      tags: ["Multi-Agent", "Tool Use", "COM Automation"],
     },
     {
-      period: "2022",
-      title: "Trainee",
-      company: "K-Software Empowerment BootCamp",
+      period: "Dec 2025 — Present",
+      title: "AI Lead",
+      company: "Korea Digital Forensic Center · RISE Project",
       description:
-        "Completed the bootcamp and received the Excellence Award in the Healthcare AI category.",
-      tags: ["Healthcare AI"],
+        "Leading the AI upgrade of PRISMA, a digital forensics tool: clustering web search histories, recovering missing disk drive serial numbers, and generating summaries of forensic results. Built and tested the server stack for reliable deployment.",
+      tags: ["Digital Forensics", "Clustering", "Summarization"],
+    },
+    {
+      period: "Jun — Aug 2025",
+      title: "Team Leader & AI Agent Lead",
+      company: "SKT × ImpactSquare",
+      href: "https://www.donga.com/news/Economy/article/all/20250818/132207445/2",
+      description:
+        "Built an AI agent that writes ESG impact reports for social enterprises from corporate data. Aligned it with expert report writers using DPO, and curbed hallucinations with LangGraph and a Chain-of-Validation step. Featured in The Dong‑A Ilbo.",
+      tags: ["AI Agents", "LangGraph", "DPO"],
+    },
+    {
+      period: "Jul 2024 — Dec 2025",
+      title: "Founder & CEO",
+      company: "AI Shared Album Startup",
+      description:
+        "Led a 7-member team across frontend and backend as project and product manager. Built the deep learning pipeline (image classification and object detection) served with FastAPI on AWS. Won the Grand Prize at the TAVE 13th Conference and joined the 2025 SKKU Campus Town Startup Residency Program.",
+      tags: ["Object Detection", "FastAPI", "AWS"],
     },
   ],
 
   projects: [
     {
-      title: "EditPPT",
+      period: "Jul — Dec 2025",
+      title: "Multi-Agent Debate for Disaster Expert Recommendation",
       description:
-        "An AI-powered PowerPoint editing agent. An agentic system that understands editing requests and applies them to slides through LLM tool calling.",
-      href: "https://github.com/ben8169/EditPPT",
-      tags: ["Python", "LLM Agents", "Tool Calling"],
+        "Led a lightweight multi-agent debate system built on small language models (LLaMA, Qwen, Phi, Gemma), where agents critique and validate each other's answers, drawing on AgentVerse, Reflexion and ReAct. Improved recommendation accuracy relative to model size. Supervised by Prof. Hoonmo Kim, SKKU.",
+      tags: ["Multi-Agent Debate", "SLM", "Recommendation"],
     },
     {
-      title: "DeepTective Reproduction",
+      period: "Apr — Jun 2025",
+      title: "French Accent Restorer",
       description:
-        "A study reproduction of DeepTective, a deep learning model that detects vulnerabilities in PHP source code.",
-      href: "https://github.com/ben8169/DeepTective_reproduction",
-      tags: ["Python", "Deep Learning", "Security"],
+        "A Flan-T5 model that restores French diacritics from unaccented text. Compressed with pruning, QLoRA and knowledge distillation, then exported and deployed with ONNX. Ranked 1st in peer evaluation.",
+      tags: ["Flan-T5", "QLoRA", "ONNX"],
     },
     {
-      title: "macOS ↔ Windows NFC Normalizer",
+      period: "Oct 2022 — Feb 2023",
+      title: "MAKEAT: Food Detection for Healthcare",
       description:
-        "A small utility that normalizes Unicode to NFC so file names stay intact when moving between macOS and Windows, packaged as a standalone .exe.",
-      href: "https://github.com/ben8169/-MacOS-Windows-",
-      tags: ["Unicode", "Utility"],
+        "A healthcare assistant app that recognizes food with YOLO object detection, trained on a large-scale 2 TB food image dataset. Won the Excellence Award in the AI for Healthcare track of the K-Software Empowerment BootCamp.",
+      tags: ["YOLO", "Computer Vision", "Healthcare"],
     },
   ],
 
