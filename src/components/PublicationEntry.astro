@@ -4,7 +4,7 @@ import { profile, type Publication } from "@/data/profile";
 
 type Props = Publication;
 
-const { title, authors, venue, year, links = [] } = Astro.props;
+const { title, authors, venue, year, award, links = [] } = Astro.props;
 
 // Split the author list so the site owner's name can be highlighted.
 const authorList = authors.split(",").map((name) => name.trim());
@@ -45,6 +45,13 @@ const isExternal = (href: string) => href.startsWith("http");
     </p>
 
     <p class="venue">{venue}</p>
+
+    {award && (
+      <p class="award">
+        <Icon name="trophy" size={14} />
+        {award}
+      </p>
+    )}
 
     {links.length > 0 && (
       <ul class="links">
@@ -125,6 +132,21 @@ const isExternal = (href: string) => href.startsWith("http");
     font-size: 0.9375rem;
     font-style: italic;
     color: var(--color-muted);
+  }
+
+  .award {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: 0.75rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.6;
   }
 
   .links {
