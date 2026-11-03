@@ -26,7 +26,17 @@ const { nav } = Astro.props;
         {profile.status && (
           <li class="status">
             <span class="pulse" aria-hidden="true" />
-            {profile.status}
+            {profile.statusHref ? (
+              <a
+                href={profile.statusHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {profile.status}
+              </a>
+            ) : (
+              profile.status
+            )}
           </li>
         )}
         {profile.location && (
@@ -142,6 +152,21 @@ const { nav } = Astro.props;
 
   .status {
     color: var(--color-heading);
+  }
+
+  .status a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 0.25em;
+    transition:
+      color 0.2s,
+      text-decoration-color 0.2s;
+  }
+
+  .status a:hover,
+  .status a:focus-visible {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
   }
 
   .pulse {

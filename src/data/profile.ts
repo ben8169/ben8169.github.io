@@ -81,6 +81,8 @@ export interface Profile {
   role: string;
   tagline: string;
   status?: string;
+  /** Optional link for the status line, e.g. your lab's people page */
+  statusHref?: string;
   location?: string;
   about: string[];
   skills: string[];
@@ -100,12 +102,13 @@ export const profile: Profile = {
   role: "AI Developer & Researcher",
   tagline:
     "Building reliable, efficient multi-agent LLM systems, from tool-augmented agents to LLM debate. Also interested in business and economics.",
-  status: "M.S. student at KAIST AI",
+  status: "M.S. student at DAVIAN Lab, KAIST AI",
+  statusHref: "https://davian.kaist.ac.kr/people#ms",
   location: "Seoul, South Korea",
 
   /** One string per paragraph. Simple HTML such as <a> and <strong> is allowed. */
   about: [
-    "I'm an AI developer and researcher specializing in <strong>agents</strong> and <strong>natural language processing</strong>. I'm currently pursuing an M.S. in Artificial Intelligence at <a href='https://www.kaist.ac.kr/en/'>KAIST</a>.",
+    "I'm an AI developer and researcher specializing in <strong>agents</strong> and <strong>natural language processing</strong>. I'm currently pursuing an M.S. in Artificial Intelligence at <a href='https://www.kaist.ac.kr/en/'>KAIST</a>, advised by Prof. Jaegul Choo in the <a href='https://davian.kaist.ac.kr/'>DAVIAN Lab</a>.",
   ],
 
   skills: ["AI Agents", "NLP", "Deep Learning", "Business"],
