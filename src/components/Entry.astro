@@ -3,14 +3,14 @@ import Icon from "@/components/Icon.astro";
 
 interface Props {
   title: string;
-  /** 회사명 등 제목 옆에 붙는 보조 텍스트 */
+  /** Secondary text next to the title, e.g. the company */
   subtitle?: string;
   href?: string;
   description: string;
   tags?: string[];
-  /** 왼쪽 칸: 기간 텍스트 */
+  /** Left column: date range */
   period?: string;
-  /** 왼쪽 칸: 썸네일 이미지 (period보다 우선) */
+  /** Left column: thumbnail image (takes precedence over period) */
   image?: string;
 }
 
@@ -26,24 +26,26 @@ const {
 const isExternal = href?.startsWith("http");
 ---
 
-<li class="entry">
+<li class:list={["entry", { "no-aside": !image && !period }]}>
   <div class="backdrop" aria-hidden="true"></div>
 
-  <div class="aside">
-    {image ? (
-      <img
-        class="thumb"
-        src={image}
-        alt=""
-        width="200"
-        height="125"
-        loading="lazy"
-        decoding="async"
-      />
-    ) : (
-      period && <p class="period">{period}</p>
-    )}
-  </div>
+  {(image || period) && (
+    <div class="aside">
+      {image ? (
+        <img
+          class="thumb"
+          src={image}
+          alt=""
+          width="200"
+          height="125"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <p class="period">{period}</p>
+      )}
+    </div>
+  )}
 
   <div class="body">
     <h3>
@@ -69,7 +71,7 @@ const isExternal = href?.startsWith("http");
     </h3>
     <p class="description">{description}</p>
     {tags.length > 0 && (
-      <ul class="tags" aria-label="사용 기술">
+      <ul class="tags" aria-label="Technologies">
         {tags.map((tag) => (
           <li>{tag}</li>
         ))}
@@ -131,7 +133,7 @@ const isExternal = href?.startsWith("http");
     transition: color 0.2s;
   }
 
-  /* 제목 링크가 카드 전체를 덮도록 해서 어디를 눌러도 이동합니다. */
+  /* Stretch the title link over the whole card so the entire card is clickable. */
   .title-link::after {
     content: "";
     position: absolute;
@@ -191,6 +193,10 @@ const isExternal = href?.startsWith("http");
     .entry {
       grid-template-columns: 9rem 1fr;
       gap: 1.5rem;
+    }
+
+    .entry.no-aside {
+      grid-template-columns: 1fr;
     }
   }
 
