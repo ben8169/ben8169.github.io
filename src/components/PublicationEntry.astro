@@ -1,0 +1,175 @@
+---
+import Icon from "@/components/Icon.astro";
+import { profile, type Publication } from "@/data/profile";
+
+type Props = Publication;
+
+const { title, authors, venue, year, links = [] } = Astro.props;
+
+// Split the author list so the site owner's name can be highlighted.
+const authorList = authors.split(",").map((name) => name.trim());
+const isSelf = (name: string) =>
+  name.replace(/[*†‡]+$/, "").toLowerCase() === profile.name.toLowerCase();
+
+const primary = links[0]?.href;
+const isExternal = (href: string) => href.startsWith("http");
+---
+
+<li class="publication">
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <p class="year">{year}</p>
+
+  <div class="body">
+    <h3>
+      {primary ? (
+        <a
+          href={primary}
+          target={isExternal(primary) ? "_blank" : undefined}
+          rel={isExternal(primary) ? "noopener noreferrer" : undefined}
+        >
+          {title}
+        </a>
+      ) : (
+        title
+      )}
+    </h3>
+
+    <p class="authors">
+      {authorList.map((name, index) => (
+        <>
+          {isSelf(name) ? <strong>{name}</strong> : name}
+          {index < authorList.length - 1 && ", "}
+        </>
+      ))}
+    </p>
+
+    <p class="venue">{venue}</p>
+
+    {links.length > 0 && (
+      <ul class="links">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              target={isExternal(link.href) ? "_blank" : undefined}
+              rel={isExternal(link.href) ? "noopener noreferrer" : undefined}
+            >
+              {link.label}
+              <Icon name="arrow-up-right" size={14} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</li>
+
+<style>
+  .publication {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    gap: 0.75rem;
+    transition: opacity 0.3s var(--ease);
+  }
+
+  .backdrop {
+    position: absolute;
+    inset: -1rem -1.5rem;
+    z-index: -1;
+    border-radius: var(--radius);
+    transition:
+      background-color 0.3s var(--ease),
+      box-shadow 0.3s var(--ease);
+  }
+
+  .year {
+    margin-top: 0.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-muted);
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  h3 a {
+    transition: color 0.2s;
+  }
+
+  h3 a:hover,
+  h3 a:focus-visible,
+  .publication:hover h3 a {
+    color: var(--color-accent);
+  }
+
+  .authors {
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .authors strong {
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 0.25em;
+  }
+
+  .venue {
+    margin-top: 0.125rem;
+    font-size: 0.9375rem;
+    font-style: italic;
+    color: var(--color-muted);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--color-heading);
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .links a:hover,
+  .links a:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 640px) {
+    .publication {
+      grid-template-columns: 9rem 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (hover: hover) {
+    .publication:hover .backdrop {
+      background: var(--color-surface-hover);
+      box-shadow:
+        var(--shadow-card),
+        0 0 0 1px var(--color-border);
+    }
+  }
+</style>
