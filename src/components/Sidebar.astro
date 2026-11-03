@@ -1,0 +1,263 @@
+---
+import Icon from "@/components/Icon.astro";
+import { profile } from "@/data/profile";
+
+interface Props {
+  nav: { id: string; label: string }[];
+}
+
+const { nav } = Astro.props;
+---
+
+<header class="sidebar">
+  <div>
+    <h1 class="name reveal" style="--i: 0">
+      {profile.name}
+    </h1>
+    <p class="role reveal" style="--i: 1">
+      {profile.role}
+    </p>
+    <p class="tagline reveal" style="--i: 2">
+      {profile.tagline}
+    </p>
+
+    {(profile.status || profile.location) && (
+      <ul class="meta reveal" style="--i: 3">
+        {profile.status && (
+          <li class="status">
+            <span class="pulse" aria-hidden="true" />
+            {profile.status}
+          </li>
+        )}
+        {profile.location && (
+          <li>
+            <Icon name="map-pin" size={16} />
+            {profile.location}
+          </li>
+        )}
+      </ul>
+    )}
+
+    <nav class="nav reveal" style="--i: 4" aria-label="페이지 내 이동">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={`#${item.id}`} data-nav={item.id}>
+              <span class="nav-line" aria-hidden="true" />
+              <span class="nav-label">{item.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+
+  {profile.socials.length > 0 && (
+    <ul class="socials reveal" style="--i: 5" aria-label="소셜 링크">
+      {profile.socials.map((social) => (
+        <li>
+          <a
+            href={social.href}
+            target={social.href.startsWith("http") ? "_blank" : undefined}
+            rel="noopener noreferrer"
+            title={social.label}
+          >
+            <span class="sr-only">{social.label}</span>
+            <Icon name={social.icon} size={22} />
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</header>
+
+<script>
+  // 스크롤 위치에 맞춰 왼쪽 내비게이션의 현재 섹션을 표시합니다.
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav]");
+  const sections = [...links]
+    .map((link) => document.getElementById(link.dataset.nav!))
+    .filter((el): el is HTMLElement => el !== null);
+
+  const setActive = (id: string) => {
+    links.forEach((link) => {
+      if (link.dataset.nav === id) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible[0]) setActive(visible[0].target.id);
+    },
+    { rootMargin: "-20% 0px -60% 0px" },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+  if (sections[0]) setActive(sections[0].id);
+</script>
+
+<style>
+  .sidebar {
+    padding-block: 4rem 2rem;
+  }
+
+  .name {
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  .role {
+    margin-top: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    letter-spacing: -0.01em;
+  }
+
+  .tagline {
+    margin-top: 1rem;
+    max-width: 22rem;
+    color: var(--color-muted);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+
+  .meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .status {
+    color: var(--color-heading);
+  }
+
+  .pulse {
+    position: relative;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #22c55e;
+  }
+
+  .pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: pulse 2s var(--ease) infinite;
+  }
+
+  @keyframes pulse {
+    to {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+
+  /* 내비게이션은 넓은 화면에서만 보입니다. */
+  .nav {
+    display: none;
+  }
+
+  .nav ul {
+    display: grid;
+    gap: 0.25rem;
+    width: max-content;
+  }
+
+  .nav a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.6rem;
+  }
+
+  .nav-line {
+    width: 2rem;
+    height: 1px;
+    background: var(--color-muted);
+    transition:
+      width 0.3s var(--ease),
+      background-color 0.3s var(--ease);
+  }
+
+  .nav-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    transition: color 0.3s var(--ease);
+  }
+
+  .nav a:hover .nav-line,
+  .nav a:focus-visible .nav-line,
+  .nav a[aria-current] .nav-line {
+    width: 4rem;
+    background: var(--color-heading);
+  }
+
+  .nav a:hover .nav-label,
+  .nav a:focus-visible .nav-label,
+  .nav a[aria-current] .nav-label {
+    color: var(--color-heading);
+  }
+
+  .socials {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .socials a {
+    display: block;
+    color: var(--color-muted);
+    transition:
+      color 0.2s,
+      transform 0.2s var(--ease);
+  }
+
+  .socials a:hover {
+    color: var(--color-heading);
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 1024px) {
+    .sidebar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-height: 100vh;
+      max-height: 100dvh;
+      padding-block: 6rem;
+    }
+
+    .nav {
+      display: block;
+      margin-top: 4rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse::after {
+      animation: none;
+    }
+  }
+</style>

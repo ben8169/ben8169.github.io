@@ -1,22 +1,42 @@
 ---
-import { profile } from "@/data/profile";
+import { profile, site } from "@/data/profile";
 
 const year = new Date().getFullYear();
 ---
 
 <footer>
-  <div class="container">
-    <p>
-      © {year} {profile.name}
-    </p>
-  </div>
+  <p>
+    © {year} {profile.name}.{" "}
+    <a href="https://astro.build" target="_blank" rel="noopener noreferrer">
+      Astro
+    </a>
+    로 만들고{" "}
+    <a href={site.repo} target="_blank" rel="noopener noreferrer">
+      GitHub Pages
+    </a>
+    로 배포했습니다.
+  </p>
 </footer>
 
 <style>
   footer {
-    padding-block: 2rem;
-    border-top: 1px solid var(--color-border);
-    color: var(--color-muted);
+    padding-bottom: 4rem;
     font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+
+  a {
+    color: var(--color-heading);
+    font-weight: 500;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 1024px) {
+    footer {
+      padding-bottom: 6rem;
+    }
   }
 </style>
