@@ -28,6 +28,16 @@ export interface Education {
   href?: string;
 }
 
+export interface Publication {
+  title: string;
+  /** Comma-separated. Your own name (profile.name) is highlighted automatically. */
+  authors: string;
+  /** e.g. "ACL 2027" or "Under review" */
+  venue: string;
+  year: string;
+  links?: { label: string; href: string }[];
+}
+
 export interface Experience {
   /** e.g. "2024 — Present" */
   period: string;
@@ -64,6 +74,7 @@ export interface Profile {
   skills: string[];
   socials: Social[];
   education: Education[];
+  publications: Publication[];
   experience: Experience[];
   projects: Project[];
   awards: Honor[];
@@ -82,11 +93,9 @@ export const profile: Profile = {
   /** One string per paragraph. Simple HTML such as <a> and <strong> is allowed. */
   about: [
     "I'm an AI developer and researcher specializing in <strong>agents</strong> and <strong>natural language processing</strong>. I'm currently pursuing an M.S. in Artificial Intelligence at <a href='https://www.kaist.ac.kr/en/'>KAIST</a>.",
-    "Before KAIST, I double-majored in English Literature and Artificial Intelligence at Sungkyunkwan University, and spent a semester at Chuo University in Japan.",
-    "Lately I've been building <a href='https://github.com/ben8169/EditPPT'>EditPPT</a>, an agentic system that edits PowerPoint decks through LLM tool calling. Beyond AI, I enjoy security — I received an Excellence Award at SKKU's bug bounty — as well as business and economics.",
   ],
 
-  skills: ["AI Agents", "NLP", "Deep Learning", "Cybersecurity", "Business"],
+  skills: ["AI Agents", "NLP", "Deep Learning", "Business"],
 
   socials: [
     { label: "GitHub", href: "https://github.com/ben8169", icon: "github" },
@@ -99,6 +108,7 @@ export const profile: Profile = {
     { label: "Email", href: "mailto:ben8169@outlook.kr", icon: "mail" },
   ],
 
+  /** Not shown right now — the Education section is commented out in src/pages/index.astro. */
   education: [
     {
       period: "2026 — Present",
@@ -118,6 +128,16 @@ export const profile: Profile = {
       degree:
         "B.A. in English Literature and Artificial Intelligence (Double Major)",
       href: "https://www.skku.edu/eng/",
+    },
+  ],
+
+  publications: [
+    {
+      title:
+        "EditPPT: Structured Execution and Evaluation for Reliable Slide Editing",
+      authors: "Jiheon Kim, Kyudan Jung, Jaegul Choo",
+      venue: "NAACL 2027 (Under Review)",
+      year: "2027",
     },
   ],
 

@@ -5,6 +5,7 @@ import Section from "@/components/Section.astro";
 import EntryList from "@/components/EntryList.astro";
 import Entry from "@/components/Entry.astro";
 import HonorList from "@/components/HonorList.astro";
+import PublicationEntry from "@/components/PublicationEntry.astro";
 import Icon from "@/components/Icon.astro";
 import Footer from "@/components/Footer.astro";
 import { profile } from "@/data/profile";
@@ -15,7 +16,12 @@ const hasHonors =
 // Only sections that have content appear in the nav and the page.
 const nav = [
   { id: "about", label: "About", show: profile.about.length > 0 },
-  { id: "education", label: "Education", show: profile.education.length > 0 },
+  // { id: "education", label: "Education", show: profile.education.length > 0 },
+  {
+    id: "publications",
+    label: "Publications",
+    show: profile.publications.length > 0,
+  },
   {
     id: "experience",
     label: "Experience",
@@ -48,6 +54,10 @@ const nav = [
         </Section>
       )}
 
+      {/*
+        Education — hidden for now. To restore it, uncomment this block and
+        the "education" entry in `nav` above.
+
       {profile.education.length > 0 && (
         <Section id="education" title="Education">
           <EntryList>
@@ -58,6 +68,17 @@ const nav = [
                 description={item.degree}
                 period={item.period}
               />
+            ))}
+          </EntryList>
+        </Section>
+      )}
+      */}
+
+      {profile.publications.length > 0 && (
+        <Section id="publications" title="Publications">
+          <EntryList>
+            {profile.publications.map((publication) => (
+              <PublicationEntry {...publication} />
             ))}
           </EntryList>
         </Section>
