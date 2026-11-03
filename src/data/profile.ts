@@ -154,6 +154,10 @@ export const profile: Profile = {
       authors: "Jiheon Kim, Kyudan Jung, Jaegul Choo",
       venue: "NAACL 2027 (Under Review)",
       year: "2027",
+      links: [
+        { label: "arXiv", href: "https://arxiv.org/abs/2608.20381" },
+        { label: "HTML", href: "https://arxiv.org/html/2608.20381v2" },
+      ],
     },
     {
       title:
