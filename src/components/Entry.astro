@@ -189,7 +189,8 @@ const isExternal = href?.startsWith("http");
     border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
   }
 
-  @media (min-width: 640px) {
+  /* Put the date beside the content only when the list is wide enough. */
+  @container (min-width: 31rem) {
     .entry {
       grid-template-columns: 10rem 1fr;
       gap: 1.5rem;

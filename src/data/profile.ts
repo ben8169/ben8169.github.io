@@ -107,7 +107,7 @@ export const profile: Profile = {
       icon: "linkedin",
     },
     { label: "Blog", href: "https://ben8169.tistory.com/", icon: "blog" },
-    { label: "Email", href: "mailto:ben8169@outlook.kr", icon: "mail" },
+    { label: "Email", href: "mailto:ben8169@kaist.ac.kr", icon: "mail" },
   ],
 
   /** Not shown right now — the Education section is commented out in src/pages/index.astro. */
@@ -149,7 +149,7 @@ export const profile: Profile = {
       title: "AI Research Intern",
       company: "KAIST AI",
       description:
-        "Researched EditPPT in the DAVIAN Lab under Prof. Jaegul Choo: a tool-augmented multi-agent framework that edits presentations through COM automation, cutting token cost and latency while improving accuracy. Collaborating with the Microsoft PowerPoint team to extend the work.",
+        "Built EditPPT, a multi-agent slide editor. Collaborating with Microsoft PowerPoint.",
       tags: ["Multi-Agent", "Tool Use", "COM Automation"],
     },
     {
@@ -157,7 +157,7 @@ export const profile: Profile = {
       title: "AI Lead",
       company: "Korea Digital Forensic Center · RISE Project",
       description:
-        "Leading the AI upgrade of PRISMA, a digital forensics tool: clustering web search histories, recovering missing disk drive serial numbers, and generating summaries of forensic results. Built and tested the server stack for reliable deployment.",
+        "Adding AI to PRISMA, a digital forensics tool: search clustering and summaries.",
       tags: ["Digital Forensics", "Clustering", "Summarization"],
     },
     {
@@ -166,7 +166,7 @@ export const profile: Profile = {
       company: "SKT × ImpactSquare",
       href: "https://www.donga.com/news/Economy/article/all/20250818/132207445/2",
       description:
-        "Built an AI agent that writes ESG impact reports for social enterprises from corporate data. Aligned it with expert report writers using DPO, and curbed hallucinations with LangGraph and a Chain-of-Validation step. Featured in The Dong‑A Ilbo.",
+        "Built an ESG report-writing agent with DPO and LangGraph. Featured in The Dong‑A Ilbo.",
       tags: ["AI Agents", "LangGraph", "DPO"],
     },
     {
@@ -174,7 +174,7 @@ export const profile: Profile = {
       title: "Founder & CEO",
       company: "AI Shared Album Startup",
       description:
-        "Led a 7-member team across frontend and backend as project and product manager. Built the deep learning pipeline (image classification and object detection) served with FastAPI on AWS. Won the Grand Prize at the TAVE 13th Conference and joined the 2025 SKKU Campus Town Startup Residency Program.",
+        "Led a 7-member team building an AI album app. Won the TAVE 13th Grand Prize.",
       tags: ["Object Detection", "FastAPI", "AWS"],
     },
   ],
@@ -184,21 +184,21 @@ export const profile: Profile = {
       period: "Jul — Dec 2025",
       title: "Multi-Agent Debate for Disaster Expert Recommendation",
       description:
-        "Led a lightweight multi-agent debate system built on small language models (LLaMA, Qwen, Phi, Gemma), where agents critique and validate each other's answers, drawing on AgentVerse, Reflexion and ReAct. Improved recommendation accuracy relative to model size. Supervised by Prof. Hoonmo Kim, SKKU.",
+        "Led a debate system where small LMs cross‑check each other's recommendations.",
       tags: ["Multi-Agent Debate", "SLM", "Recommendation"],
     },
     {
       period: "Apr — Jun 2025",
       title: "French Accent Restorer",
       description:
-        "A Flan-T5 model that restores French diacritics from unaccented text. Compressed with pruning, QLoRA and knowledge distillation, then exported and deployed with ONNX. Ranked 1st in peer evaluation.",
+        "Flan-T5 model, compressed via QLoRA and distillation. 1st in peer evaluation.",
       tags: ["Flan-T5", "QLoRA", "ONNX"],
     },
     {
       period: "Oct 2022 — Feb 2023",
       title: "MAKEAT: Food Detection for Healthcare",
       description:
-        "A healthcare assistant app that recognizes food with YOLO object detection, trained on a large-scale 2 TB food image dataset. Won the Excellence Award in the AI for Healthcare track of the K-Software Empowerment BootCamp.",
+        "YOLO-based food recognition app. Won the Excellence Award at K‑Software BootCamp.",
       tags: ["YOLO", "Computer Vision", "Healthcare"],
     },
   ],
