@@ -131,17 +131,13 @@ export const profile: Profile = {
     },
   ],
 
-  // TODO: placeholder — replace with real publication details.
   publications: [
     {
-      title: "Paper Title Goes Here",
-      authors: "JiHeon Kim, Co-Author One, Co-Author Two",
-      venue: "Conference Name 2027",
+      title:
+        "EditPPT: Structured Execution and Evaluation for Reliable Slide Editing",
+      authors: "Jiheon Kim, Kyudan Jung, Jaegul Choo",
+      venue: "NAACL 2027 (Under Review)",
       year: "2027",
-      links: [
-        { label: "Paper", href: "#" },
-        { label: "Code", href: "#" },
-      ],
     },
   ],
 
