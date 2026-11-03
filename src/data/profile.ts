@@ -174,7 +174,7 @@ export const profile: Profile = {
       title: "Founder & CEO",
       company: "AI Shared Album Startup",
       description:
-        "Led a 7-member team building an AI shared‑album app. Won the TAVE 13th Grand Prize.",
+        "Led a 7-member team building an AI album app. Won the TAVE 13th Grand Prize.",
       tags: ["Object Detection", "FastAPI", "AWS"],
     },
   ],
