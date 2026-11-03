@@ -8,6 +8,7 @@ import HonorList from "@/components/HonorList.astro";
 import PublicationEntry from "@/components/PublicationEntry.astro";
 import Icon from "@/components/Icon.astro";
 import Footer from "@/components/Footer.astro";
+import { Image } from "astro:assets";
 import { profile } from "@/data/profile";
 
 const hasCorrespondingMark = profile.publications.some((p) =>
@@ -43,6 +44,17 @@ const nav = [
     <main id="content" class="reveal" style="--i: 3">
       {profile.about.length > 0 && (
         <Section id="about" title="About">
+          {profile.photo && (
+            <Image
+              class="avatar"
+              src={profile.photo}
+              alt={`Portrait of ${profile.name}`}
+              width={120}
+              height={120}
+              densities={[1, 2]}
+              loading="eager"
+            />
+          )}
           <div class="about">
             {profile.about.map((paragraph) => (
               <p set:html={paragraph} />
@@ -161,6 +173,16 @@ const nav = [
     max-width: var(--page-width);
     margin-inline: auto;
     padding-inline: 1.5rem;
+  }
+
+  .avatar {
+    width: 7.5rem;
+    height: 7.5rem;
+    margin-bottom: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    outline: 1px solid var(--color-border);
+    outline-offset: 4px;
   }
 
   .about {
